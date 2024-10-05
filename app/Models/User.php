@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return (bool) $this->admin;
     }
+
+    public function isPartner(): bool
+    {
+        return (bool) $this->partner; // Asumsikan ada kolom `partner` di tabel users
+    }
 }

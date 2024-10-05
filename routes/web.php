@@ -60,3 +60,5 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 require __DIR__ . '/auth.php';
 
 require __DIR__ . '/admin.php';
+
+require __DIR__ . '/partner.php';

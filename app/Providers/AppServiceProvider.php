@@ -34,6 +34,9 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(resource_path('views/admin'), 'admin');
 
+        // Load views for 'partner' role
+        $this->loadViewsFrom(resource_path('views/partner'), 'partner');
+
         Blade::directive('idr', fn ($expression) => "Rp <?php echo number_format({$expression}, 0, ',', '.'); ?>");
     }
 }

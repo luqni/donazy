@@ -14,6 +14,12 @@
                     </svg>
                     <span class="whitespace-nowrap text-xs mt-1">Program</span>
                 </a>
+                <a href="{{ route('register.organization') }}" class="{{ request()->routeIs('register.organization') ? 'text-primary' : 'text-gray-400' }} active:text-primary hover:text-primary text-center flex flex-col flex-1 items-center px-2 py-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M18.458 3.11A1 1 0 0 1 19 4v16a1 1 0 0 1-1.581.814L12 16.944V7.056l5.419-3.87a1 1 0 0 1 1.039-.076ZM22 12c0 1.48-.804 2.773-2 3.465v-6.93c1.196.692 2 1.984 2 3.465ZM10 8H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6V8Zm0 9H5v3a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-3Z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="whitespace-nowrap text-xs mt-1">Galang Dana</span>
+                </a>
                 <a href="{{ route('my-transactions.index') }}" class="{{ request()->routeIs('my-transactions.index') ? 'text-primary' : 'text-gray-400' }} active:text-primary hover:text-primary text-center flex flex-col flex-1 items-center px-2 py-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />

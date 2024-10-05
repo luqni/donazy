@@ -23,6 +23,11 @@ class RegisteredUserController extends Controller
         return view('auth.register');
     }
 
+    public function createUserOrganization()
+    {
+        return view('auth.registerOrganization');
+    }
+
     /**
      * Handle an incoming registration request.
      *
