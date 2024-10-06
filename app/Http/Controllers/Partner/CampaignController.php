@@ -17,7 +17,9 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $campaigns = PaginationService::make(Campaign::query())
+        $userId = auth()->user()->id; // Retrieve the logged-in user's ID
+
+        $campaigns = PaginationService::make(Campaign::where('owner_id', $userId)) // Filter campaigns by the logged-in user
             ->setSearchables([
                 'name',
                 'slug',
@@ -51,16 +53,27 @@ class CampaignController extends Controller
      */
     public function store(CampaignStoreRequest $request)
     {
-        $campaign = Campaign::create($request->validation());
+        // Get the logged-in user's ID
+        $userId = auth()->user()->id;
 
+        // Merge the owner_id field into the validated data before creating the campaign
+        $campaignData = array_merge($request->validated(), [
+            'owner_id' => $userId,  // Add owner_id to the campaign data
+        ]);
+
+        // Create the campaign with the data including the owner_id
+        $campaign = Campaign::create($campaignData);
+
+        // Check if a cover file is uploaded and handle the media upload
         if ($request->hasFile('cover')) {
             $campaign->addMediaFromRequest('cover')->toMediaCollection();
         }
 
+        // Redirect to the campaign edit page with a success message
         return redirect()
             ->route('partner::campaigns.edit', $campaign)
             ->with('success', __('crud.created', ['name' => 'campaign']));
-    }
+        }
 
     /**
      * Display the specified resource.
