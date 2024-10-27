@@ -280,7 +280,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-3 mb-3">
-					<a href="https://zakatin.com/zakats" class="d-flex flex-column align-items-center text-center">
+					<a href="#" class="d-flex flex-column align-items-center text-center">
 						<span class="icon-container px-0 py-0 mb-2">
 							<img src="https://zakatin.com/v2/img/zakat.svg" loading="lazy" width="56" height="56">
 						</span>
@@ -288,7 +288,7 @@
 					</a>
 				</div>
 				<div class="col-3 mb-3">
-					<a href="https://zakatin.com/campaigns" class="d-flex flex-column align-items-center text-center">
+					<a href="#" class="d-flex flex-column align-items-center text-center">
 						<span class="icon-container px-0 py-0 mb-2">
 							<img src="https://zakatin.com/v2/img/donasi.svg" loading="lazy" width="56" height="56">
 						</span>
@@ -296,7 +296,7 @@
 					</a>
 				</div>
 				<div class="col-3 mb-3">
-					<a href=						https://zakatin.com/infak-subuh
+					<a href="#"
 						 class="d-flex flex-column align-items-center text-center">
 						<span class="icon-container px-0 py-0 mb-2">
 							<img src="https://zakatin.com/v2/img/infak-subuh.svg" loading="lazy" width="56" height="56">
