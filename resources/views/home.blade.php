@@ -1,97 +1,600 @@
-<x-app>
-    <x-slot name="styles">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/themes/splide-default.min.css">
-    </x-slot>
 
-    <x-slot name="scripts">
-        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
-    </x-slot>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://zakatin.com/v2/img/favicon.png">
+	<meta name="description" content="Zakatin adalah peta penemu orang yang butuh bantuanmu.">
+    <meta name="keywords" content="zakatin, zakat, donasi, kalkulator zakat">
+    <meta property="fb:app_id" content="1667686990037690">
+    <meta property="og:url" content="https://zakatin.com">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Zakatin - Home">
+    <meta property="og:image" content="https://zakatin.com/images/logo-big.png">
+    <meta property="og:description" content="Zakatin adalah peta penemu orang yang butuh bantuanmu.">
+    <meta property="og:site_name" content="Zakatin">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@ZakatinC">
+    <meta name="twitter:creator" content="@ZakatinC">
+    <meta name="twitter:url" content="https://zakatin.com">
+    <meta name="twitter:title" content="Zakatin - Home">
+    <meta name="twitter:description" content="Zakatin adalah peta penemu orang yang butuh bantuanmu.">
+    <meta name="twitter:image" content="https://zakatin.com/images/logo-big.png">
+    <meta name="twitter:dnt" content="on">
+    <title>Zakatin - Home</title>
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="https://zakatin.com/manifest.json">
+    <!-- Chrome for Android theme color -->
+    <meta name="theme-color" content="#000000">
 
-    <x-search-bar />
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Zakatin">
+    <link rel="icon" sizes="512x512" href="/images/icons/icon-512x512.png">
 
-    <x-container>
-        <main class="py-20">
-            @if ($banners->isNotEmpty())
-                <x-bg-main class="w-full p-6">
-                    <div id="banner" class="splide">
-                        <div class="splide__slider">
-                            <div class="splide__track">
-                                <div class="splide__list">
-                                    @foreach ($banners as $banner)
-                                        <div class="splide__slide">
-                                            <img src="{{ $banner->thumbnail_url }}" class="w-full h-52 object-cover object-center" />
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Zakatin">
+    <link rel="apple-touch-icon" href="/images/icons/icon-512x512.png">
+
+
+    <link href="/images/icons/splash-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/images/icons/splash-750x1334.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/images/icons/splash-1242x2208.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="/images/icons/splash-1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="/images/icons/splash-828x1792.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/images/icons/splash-1242x2688.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="/images/icons/splash-1536x2048.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/images/icons/splash-1668x2224.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/images/icons/splash-1668x2388.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="/images/icons/splash-2048x2732.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
+    <!-- Tile for Win8 -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/images/icons/icon-512x512.png">
+
+    <script type="text/javascript">
+        // Initialize the service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/serviceworker.js', {
+                scope: '.'
+            }).then(function (registration) {
+                // Registration was successful
+                // console.log('Laravel PWA: ServiceWorker registration successful with scope: ', registration.scope);
+            }, function (err) {
+                // registration failed :(
+                // console.log('Laravel PWA: ServiceWorker registration failed: ', err);
+            });
+        }
+    </script>	
+    <script>
+		window.paceOptions = {
+			ajax: {
+				trackMethods: ['GET', 'POST', 'PUT', 'DELETE', 'REMOVE']
+			},
+			restartOnRequestAfter: 30
+		};
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
+	<link rel="stylesheet" href="https://zakatin.com/v2/vendors/pace/minimal.css">
+	<link rel="stylesheet" href="https://zakatin.com/v2/vendors/fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="https://zakatin.com/v2/css/bootstrap.css">
+	<link rel="stylesheet" href="https://zakatin.com/v2/css/perfect-scrollbar.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp">
+	<link rel="stylesheet" href="https://zakatin.com/v2/css/app.css">
+	<link rel="stylesheet" href="https://zakatin.com/v2/vendors/owl-carousel/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://zakatin.com/v2/vendors/owl-carousel/css/owl.theme.default.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+
+    <script>
+        function initMap(datas) {
+            var map = L.map('map', {zoomControl: false}).setView([-0.789275, 113.921327], 4);
+
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                maxZoom: 18,
+                id: 'mapbox/streets-v11',
+                tileSize: 512,
+                zoomOffset: -1,
+                accessToken: 'pk.eyJ1Ijoiem1yaXN5YWQiLCJhIjoiY2tpa2M0bzhvMDhjNzJ0bzEwYjJ5M3hsNiJ9.tcZ4Ka280apgWO1pkdTjFA'
+            }).addTo(map)
+
+            L.control.zoom({
+                position : 'bottomright'
+            }).addTo(map)
+
+            const mapIcon = L.icon({
+                iconUrl: '/v2/img/svg/location_on-24px.svg',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -24]
+            });
+
+            for (let i = 0; i < datas.length; i++) {
+                const data = datas[i],
+                marker = L.marker([data.longitude, data.latitude], {
+                    icon: mapIcon
+                }),
+                content = `<div class="d-flex align-items-center mb-2">
+                    <img src="`+ data.image +`" width="56px" height="56px" class="fit-cover rounded mr-2">
+                    <a href="/campaigns/donations/1" class="font-weight-semibold font-size-sm text-dark truncate-3">`+ data.title +`</a>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: `+ data.progress +`%" aria-valuenow="`+ data.progress +`" aria-valuemin="0" aria-valuemax="`+ data.progress +`"></div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="font-size-sm text-left">
+                        <span class="d-block font-weight-semibold text-success">`+ data.amount +`</span>
                     </div>
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            new Splide('#banner', {
-                                arrows: false,
-                            }).mount();
-                        });
-                    </script>
-                </x-bg-main>
-            @endif
+                </div>
+                <hr>
+                <p class="font-size-sm text-default mb-2">`+ data.address +`</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=`+ data.longitude +`,`+ data.latitude +`" target="_blank" class="font-size-normal font-weight-semibold text-primary d-inline-flex align-items-center">Buka Maps <span class="icon icon-sm"><i class="material-icons">near_me</i></span></a>`
 
-            <div class="mb-2"></div>
+                marker.bindPopup(content, {
+                    maxWidth : 195
+                }).addTo(map);
+            }
 
-            @if ($sliders->isNotEmpty())
-                @foreach ($sliders as $slider)
-                    <x-bg-main class="p-6">
-                        <h2 class="text-primary text-center text-lg font-semibold mb-4">{{ $slider->name }}</h2>
+            map.on('popupopen', function(centerMarker) {
+                const cM = map.project(centerMarker.popup._latlng),
+                zoom = map.getZoom() + 2
 
-                        <x-slider id="slider-{{ $slider->id }}">
-                            @foreach ($slider->campaigns as $campaign)
-                                <x-slider-item class="w-72">
-                                    <x-card-campaign :campaign="$campaign" />
-                                </x-slider-item>
-                            @endforeach
-                        </x-slider>
-                    </x-bg-main>
+                cM.y -= centerMarker.popup._container.clientHeight / 8
+                map.setView(map.unproject(cM), zoom, {
+                    animate: true
+                });
+            });
+        }
+    </script>
+    <link rel="stylesheet" href="https://zakatin.com/v2/vendors/select2/css/select2.min.css">
+    <link rel="stylesheet" href="https://zakatin.com/v2/vendors/select2/css/select2-materialize.css">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152428271-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-                    <div class="mb-2"></div>
+    gtag('config', 'UA-152428271-1');
+    </script>
+	<!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '231131437993384');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=231131437993384&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+	<style>
+		body{
+			-webkit-print-color-adjust: exact;
+			background-color:#f5f5f5;
+		}
+
+		.main-wrapper{
+			max-width: 360px !important;
+			margin:0 auto !important;
+			background-color:#fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="main-wrapper">
+        <nav class="navbar navbar-top fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <!-- <img src="/v2/img/brand-img.svg" width="109" height="28"> -->
+                    <h3>Logo</h3>
+                </a>
+                <ul class="navbar-nav ml-auto nav-flex-icons">
+                    <li class="nav-item">
+                        <a class="nav-link p-0" href="/search">
+                            <span class="icon"><i class="material-icons">search</i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <nav class="navbar navbar-bottom fixed-bottom">
+            <div class="container p-0">
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-0 active" href="https://zakatin.com">
+                            <span class="icon"><i class="material-icons">home</i></span>
+                            <span class="nav-title">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-0" href="https://zakatin.com/channels">
+                            <span class="icon"><i class="material-icons">article</i></span>
+                            <span class="nav-title">Kanal</span>
+                        </a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-0" href="https://zakatin.com/user-campaigns">
+                            <span class="icon"><i class="material-icons">campaign</i></span>
+                            <span class="nav-title">Galang Dana</span>
+                        </a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-0" href="https://zakatin.com/transactions">
+                            <span class="icon"><i class="material-icons">list_alt</i></span>
+                            <span class="nav-title">Transaksi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-0" href="https://zakatin.com/profile">
+                            <span class="icon"><i class="material-icons">account_circle</i></span>
+                            <span class="nav-title">Profil</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+	<main>
+	<section class="bg-white pb-2">
+		<div class="container">
+			<div class="row">
+				<div class="owl-carousel owl-theme" id="slideFeatured">
+				<div class="item">
+						<a href="#">
+							<img src="https://zakatin.com/v2/img/slider/slider-zakat-dec-21.jpg" width="312" height="128" class="img-slide fit-cover">
+						</a>
+					</div>
+					<div class="item">
+						<a href="#">
+							<img src="https://zakatin.com/v2/img/slider/banner-lebaran.jpg" width="312" height="128" class="img-slide fit-cover">
+						</a>
+					</div>
+					<div class="item">
+						<a href="#">
+							<img src="https://zakatin.com/v2/img/slider/yzmu-juli-2.jpg" width="312" height="128" class="img-slide fit-cover">
+						</a>
+					</div>
+					
+					<div class="item">
+						<a href="#">
+							<img src="https://zakatin.com/v2/img/slider/slider-4.webp" width="312" height="128" class="img-slide fit-cover">
+						</a>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="bg-white shadow-bottom pb-0 mb-4">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-3 mb-3">
+					<a href="https://zakatin.com/zakats" class="d-flex flex-column align-items-center text-center">
+						<span class="icon-container px-0 py-0 mb-2">
+							<img src="https://zakatin.com/v2/img/zakat.svg" loading="lazy" width="56" height="56">
+						</span>
+						<span class="font-weight-semibold">Zakat</span>
+					</a>
+				</div>
+				<div class="col-3 mb-3">
+					<a href="https://zakatin.com/campaigns" class="d-flex flex-column align-items-center text-center">
+						<span class="icon-container px-0 py-0 mb-2">
+							<img src="https://zakatin.com/v2/img/donasi.svg" loading="lazy" width="56" height="56">
+						</span>
+						<span class="font-weight-semibold">Donasi</span>
+					</a>
+				</div>
+				<div class="col-3 mb-3">
+					<a href=						https://zakatin.com/infak-subuh
+						 class="d-flex flex-column align-items-center text-center">
+						<span class="icon-container px-0 py-0 mb-2">
+							<img src="https://zakatin.com/v2/img/infak-subuh.svg" loading="lazy" width="56" height="56">
+						</span>
+						<span class="font-weight-semibold">Infak Subuh</span>
+					</a>
+				</div>
+				
+				
+			</div>
+		</div>
+	</section>
+
+	<section>
+    @if ($sliders->isNotEmpty())
+        @foreach ($sliders as $slider)
+		<div class="container">
+			<h6 class="section-title">{{ $slider->name }}</h6>
+			<div class="owl-carousel owl-theme" id="slideCampaign">
+                @foreach ($slider->campaigns as $campaign)
+				<div class="item">
+                    <x-card-campaign :campaign="$campaign" />
+				</div>
                 @endforeach
-            @endif
+            </div>
+		</div>
+        @endforeach
+     @endif
+	</section>
 
-            <x-bg-main class="text-sm flex flex-col justify-center items-center p-6">
-                <div class="font-bold mb-4">Temukan dan Hubungi Kami di :</div>
-                <div class="flex justify-center items-center space-x-8 mb-8">
-                    <a href="#">
-                        <svg class="w-6 h-6" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.22305 16.1869L5.5461 16.3372C6.89234 17.089 8.39999 17.4398 9.90771 17.4398C14.6462 17.4398 18.5231 13.8313 18.5231 9.42078C18.5231 7.31581 17.6077 5.26091 15.9923 3.75732C14.3769 2.25372 12.223 1.40173 9.90771 1.40173C5.16925 1.40173 1.29226 5.0103 1.34614 9.47094C1.34614 10.9745 1.83075 12.428 2.63842 13.6809L2.85378 13.9816L1.99231 16.9387L5.22305 16.1869Z" fill="#00E676"/>
-                            <path d="M16.9077 2.95545C15.0769 1.20132 12.5462 0.249023 9.96154 0.249023C4.46929 0.249023 0.0538804 4.40889 0.107684 9.4709C0.107684 11.0747 0.592298 12.6285 1.40004 14.0318L0 18.7931L5.22308 17.5401C6.67692 18.2919 8.29225 18.6428 9.90774 18.6428C15.3462 18.6428 19.7616 14.4828 19.7616 9.42089C19.7616 6.96501 18.7385 4.6595 16.9078 2.95545H16.9077ZM9.96154 17.0891C8.5077 17.0891 7.05385 16.7383 5.81538 16.0366L5.49233 15.8863L2.36927 16.638L3.17694 13.7813L2.96157 13.4805C0.592298 9.92212 1.72309 5.2108 5.60001 3.00553C9.47693 0.800325 14.4846 1.85285 16.8539 5.46141C19.2231 9.06998 18.0923 13.7311 14.2155 15.9363C12.9769 16.6881 11.4693 17.089 9.96154 17.089V17.0891ZM14.7 11.5259L14.1077 11.2753C14.1077 11.2753 13.2462 10.9245 12.7077 10.6739C12.6539 10.6739 12.6001 10.6237 12.5462 10.6237C12.3846 10.6237 12.2769 10.6739 12.1692 10.724C12.1692 10.724 12.1154 10.7741 11.3616 11.576C11.3077 11.6762 11.2 11.7264 11.0923 11.7264H11.0385C10.9847 11.7264 10.877 11.6762 10.8231 11.6262L10.5538 11.5259C9.96154 11.2753 9.42312 10.9746 8.99231 10.5736C8.88463 10.4734 8.72306 10.3732 8.61538 10.273C8.23845 9.92212 7.86152 9.52113 7.59235 9.07005L7.53847 8.96982C7.48466 8.91967 7.48466 8.86959 7.43078 8.76936C7.43078 8.66913 7.43078 8.5689 7.48466 8.51875C7.48466 8.51875 7.70003 8.26814 7.86152 8.11783C7.96928 8.01753 8.02308 7.86722 8.13077 7.76699C8.23845 7.61661 8.29233 7.41615 8.23845 7.26577C8.18465 7.01516 7.53847 5.66195 7.37698 5.36126C7.26922 5.21088 7.16161 5.1608 7.00005 5.11065H6.40775C6.29999 5.11065 6.19238 5.1608 6.08462 5.1608L6.03074 5.21088C5.92306 5.26103 5.81538 5.36126 5.70769 5.41134C5.60001 5.51164 5.54613 5.6118 5.43845 5.7121C5.06151 6.16317 4.84615 6.71447 4.84615 7.26577C4.84615 7.66669 4.95383 8.06768 5.11539 8.41852L5.16928 8.5689C5.65389 9.52112 6.29999 10.3732 7.16161 11.1249L7.37698 11.3254C7.53847 11.4758 7.70003 11.576 7.80772 11.7263C8.93851 12.6285 10.2308 13.2801 11.6846 13.6309C11.8462 13.681 12.0616 13.681 12.2231 13.7311H12.7615C13.0308 13.7311 13.3538 13.6309 13.5693 13.5307C13.7308 13.4305 13.8385 13.4305 13.9461 13.3302L14.0539 13.2299C14.1616 13.1297 14.2693 13.0796 14.377 12.9794C14.4846 12.8792 14.5923 12.7789 14.6462 12.6786C14.7539 12.4782 14.8077 12.2276 14.8616 11.977V11.6262C14.8616 11.6262 14.8077 11.576 14.7 11.5259Z" fill="white"/>
-                        </svg>
-                    </a>
-                    <a href="#">
-                        <svg class="w-6 h-6" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18.6772 18.5783C19.2797 18.5783 19.7683 18.1254 19.7683 17.5667V1.26064C19.7683 0.701883 19.2797 0.249023 18.6772 0.249023H1.09104C0.488338 0.249023 0 0.701883 0 1.26064V17.5667C0 18.1254 0.488338 18.5783 1.09104 18.5783H18.6772Z" fill="#395185"/>
-                            <path d="M13.6397 18.7931V11.695H16.2093L16.5941 8.92883H13.6397V7.16264C13.6397 6.36174 13.8796 5.81595 15.1183 5.81595L16.6982 5.8153V3.34122C16.4248 3.3075 15.487 3.23218 14.3961 3.23218C12.1182 3.23218 10.5589 4.52131 10.5589 6.88878V8.92883H7.98267V11.695H10.5589V18.7931H13.6397Z" fill="white"/>
-                        </svg>
-                    </a>
-                    <a href="#">
-                        <svg class="w-6 h-6" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22.3417 2.42651C22.2107 1.97749 21.9551 1.56813 21.6003 1.2392C21.2456 0.910267 20.8041 0.673238 20.3198 0.551715C18.5469 0.103394 11.4116 0.103394 11.4116 0.103394C11.4116 0.103394 4.27585 0.116964 2.50294 0.565286C2.01866 0.686816 1.57716 0.923857 1.22242 1.2528C0.867681 1.58175 0.612068 1.99113 0.481039 2.44016C-0.0552245 5.36096 -0.263251 9.81157 0.495764 12.6155C0.626807 13.0645 0.882425 13.4739 1.23717 13.8028C1.59191 14.1318 2.03339 14.3688 2.51766 14.4903C4.29057 14.9386 11.4261 14.9386 11.4261 14.9386C11.4261 14.9386 18.5616 14.9386 20.3344 14.4903C20.8187 14.3688 21.2602 14.1318 21.6149 13.8029C21.9697 13.4739 22.2253 13.0646 22.3564 12.6155C22.922 9.6906 23.0963 5.24279 22.3417 2.42659V2.42651Z" fill="#FF0000"/>
-                            <path d="M9.14038 10.7L15.0598 7.521L9.14047 4.34204L9.14038 10.7Z" fill="white"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="flex justify-center items-center space-x-4 mb-2">
-                    <a href="#">Syarat & Ketentuan</a>
-                    <div>|</div>
-                    <a href="#">Pusat Bantuan</a>
-                </div>
-                <div class="mb-8">
-                    <a href="#">Tentang {{ Config::get('app.name') }}</a>
-                </div>
-                <div>Copyright {{ now()->year }} {{ Config::get('app.name') }}.</div>
-                <div>All Rights Reserved.</div>
-            </x-bg-main>
-        </main>
-    </x-container>
+	<section>
+		<div class="container">
+			<h6 class="section-title">Bantu Sesama Mulai dari yang Terdekat</h6>
+			<a href="#modalMap" data-toggle="modal">
+				<img src="https://zakatin.com/v2/img/map.webp" loading="lazy" width="330" height="144" class="img-fluid rounded">
+			</a>
+		</div>
+	</section>
 
-    <x-bottom-bar />
-</x-app>
+	<div id="campaignList">
+	</div>
+	<div class="d-none" id="partnerImage">
+	
+	<img src="https://zakatin.com/v2/img/partner/lazismu.webp" loading="lazy" width="48" height="28" class="fit-contain mx-1 mb-2">
+    <img src="https://zakatin.com/v2/img/partner/nu-care.webp" loading="lazy" width="70" height="28" class="fit-contain mx-1 mb-2">
+    <img src="https://zakatin.com/v2/img/partner/nurul-hayat.webp" loading="lazy" width="34" height="28" class="fit-contain mx-1 mb-2">
+    <img src="https://zakatin.com/v2/img/partner/dewan-dakwah.webp" loading="lazy" width="76" height="28" class="fit-contain mx-1 mb-2">
+    <img src="https://zakatin.com/v2/img/partner/wahdah.webp" loading="lazy" width="32" height="28" class="fit-contain mx-1 mb-2">	</div>
+	<div class="d-none" id="testimonyItems">
+	
+	<div class="item">
+        <div class="card card-testimony">
+            <iframe class="card-img" loading="lazy" width="224" height="128" src="https://www.youtube.com/embed/GthuwgrSbfg" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/GthuwgrSbfg?autoplay=1><img src=https://img.youtube.com/vi/GthuwgrSbfg/hqdefault.jpg alt='Apa Itu Zakatin?'><span>▶</span></a>" title="Apa Itu Zakatin?" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="item">
+        <div class="card card-testimony">
+            <iframe class="card-img" loading="lazy" width="224" height="128" src="https://www.youtube.com/embed/fHU_tni413s" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/fHU_tni413s?autoplay=1><img src=https://img.youtube.com/vi/fHU_tni413s/hqdefault.jpg alt='Zaky Menemukan Peta Baru'><span>▶</span></a>" title="Zaky Menemukan Peta Baru" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="item">
+        <div class="card card-testimony">
+            <iframe class="card-img" loading="lazy" width="224" height="128" src="https://www.youtube.com/embed/tp7gJk7zN4A" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/tp7gJk7zN4A?autoplay=1><img src=https://img.youtube.com/vi/tp7gJk7zN4A/hqdefault.jpg alt='Bangun Rumah Guru Ngaji Bersama Ustadz Salim A. Fillah'><span>▶</span></a>" title="Bangun Rumah Guru Ngaji Bersama Ustadz Salim A. Fillah" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>	
+    </div>
 
+	<section id="loadCampaignContainer">
+		<div class="container">
+			<h6 class="text-center font-weight-semibold py-3">
+				<a href="javascript:void(0)" class="text-decoration-none" onclick="loadCampaign()" id="load_more">Muat Lebih Banyak</a>
+			</h6>
+		</div>
+	</section>
+
+	
+	
+	<div class="modal fade" id="modalMap" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="modal-header bg-white sticky-top">
+					<h4 class="modal-title w-100">Salurkan ke yang Terdekat</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-container position-relative">
+					<div class="map-container"></div>
+					<div class="map-search">
+						<select class="form-control" id="mapSearch">
+							<option></option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</main>
+
+	<script src="https://zakatin.com/v2/js/jquery.min.js"></script>
+	<script src="https://zakatin.com/v2/js/popper.min.js"></script>
+	<script src="https://zakatin.com/v2/js/bootstrap.min.js"></script>
+	<script src="https://zakatin.com/v2/js/mdb.min.js"></script>
+	<script src="https://zakatin.com/v2/js/perfect-scrollbar.min.js"></script>
+	<script src="https://zakatin.com/v2/vendors/momentjs/js/moment-with-locales.min.js"></script>
+	<script src="https://zakatin.com/v2/vendors/autoNumericjs/autoNumeric.js"></script>
+	<script src="https://zakatin.com/v2/js/app.js"></script>
+	<script src="https://zakatin.com/v2/vendors/owl-carousel/js/owl.carousel.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+<script>
+	function initMap(datas,center = null) {
+		$('.map-container').html('<div id="map" class="map-content"></div>')
+
+		if (center==1) {
+			var map = L.map('map', {zoomControl: false}).setView([datas[0].campaign_latitude, datas[0].campaign_longitude], 4);
+		} else {
+			var map = L.map('map', {zoomControl: false}).setView([-0.789275, 113.921327], 4);
+		}
+		
+		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+			maxZoom: 18,
+			id: 'mapbox/streets-v11',
+			tileSize: 512,
+			zoomOffset: -1,
+			accessToken: 'pk.eyJ1Ijoiem1yaXN5YWQiLCJhIjoiY2tpa2M0bzhvMDhjNzJ0bzEwYjJ5M3hsNiJ9.tcZ4Ka280apgWO1pkdTjFA'
+		}).addTo(map)
+
+		L.control.zoom({
+			position : 'bottomright'
+		}).addTo(map)
+
+		const mapIcon = L.icon({
+			iconUrl: '/v2/img/svg/location_on-24px.svg',
+			iconSize: [32, 32],
+			iconAnchor: [14, 32],
+			popupAnchor: [0, -24]
+		});
+
+		for (let i = 0; i < datas.length; i++) {
+			const data = datas[i]
+
+			if (data.campaign_longitude && data.campaign_latitude) {
+				const marker = L.marker([data.campaign_latitude, data.campaign_longitude], {
+					icon: mapIcon
+				})
+
+				let progress = 100,
+				progressText = ''
+
+				if (data.campaign_amount_need) {
+					progress = data.total_campaign_amount / parseInt(data.campaign_amount_need) * 100
+
+					if (data.total_campaign_amount >= parseInt(data.campaign_amount_need) || data.campaign_limit_status == 0 || data.campaign_end_date == null) {
+						progress = 100
+					} else {
+						progress = progress.toFixed(2)
+					}
+				}
+
+				if (data.campaign_limit_status !== 0) {
+					progressText = ' ('+ progress +'%)'
+				}
+
+				const content = `<div class="d-flex align-items-center mb-2">
+					<img src="`+ data.campaign_image +`" width="56px" height="56px" class="fit-cover rounded mr-2">
+					<a href="/`+ data.campaign_custom_link +`" class="font-weight-semibold font-size-sm text-dark truncate-3">`+ data.campaign_name +`</a>
+				</div>
+				<div class="progress">
+					<div class="progress-bar bg-success" role="progressbar" style="width: `+ progress +`%" aria-valuenow="`+ progress +`" aria-valuemin="0" aria-valuemax="100"></div>
+				</div>
+				<div class="d-flex justify-content-between">
+					<div class="font-size-sm text-left">
+						<span class="d-block font-weight-semibold text-success">Rp `+ formatNumber(data.total_campaign_amount) + progressText +`</span>
+					</div>
+				</div>
+				<hr>
+				<p class="font-size-sm text-default mb-2">`+ data.campaign_address +`</p>
+				<a href="`+ data.campaign_gmaps_url +`" target="_blank" class="font-size-normal font-weight-semibold text-primary d-inline-flex align-items-center">Buka Maps <span class="icon icon-sm"><i class="material-icons">near_me</i></span></a>`
+
+				marker.bindPopup(content, {
+					maxWidth : 195
+				}).addTo(map);
+			}
+		}
+
+		map.on('popupopen', function(centerMarker) {
+			const cM = map.project(centerMarker.popup._latlng),
+			zoom = map.getZoom() + 2
+
+			cM.y -= centerMarker.popup._container.clientHeight / 8
+			map.setView(map.unproject(cM), zoom, {
+				animate: true
+			});
+		});
+	}
+
+	function initQurbanMap(datas,center = null) {
+		$('.map-container').html('<div id="map" class="map-content"></div>')
+
+		if (center==1) {
+			var map = L.map('map', {zoomControl: false}).setView([datas[0].data.latitude, datas[0].data.longitude], 4);
+		} else {
+			var map = L.map('map', {zoomControl: false}).setView([-0.789275, 113.921327], 4);
+		}
+		
+		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+			maxZoom: 18,
+			id: 'mapbox/streets-v11',
+			tileSize: 512,
+			zoomOffset: -1,
+			accessToken: 'pk.eyJ1Ijoiem1yaXN5YWQiLCJhIjoiY2tpa2M0bzhvMDhjNzJ0bzEwYjJ5M3hsNiJ9.tcZ4Ka280apgWO1pkdTjFA'
+		}).addTo(map)
+
+		L.control.zoom({
+			position : 'bottomright'
+		}).addTo(map)
+
+		const mapIcon = L.icon({
+			iconUrl: '/v2/img/svg/location_on-24px.svg',
+			iconSize: [32, 32],
+			iconAnchor: [14, 32],
+			popupAnchor: [0, -24]
+		});
+
+		for (let i = 0; i < datas.length; i++) {
+			const data = datas[i]
+			url = data.data.product_google_maps_url
+			
+			var regex = new RegExp('@(.*),(.*),');
+            var lon_lat_match = url.match(regex);
+            var latitude = lon_lat_match[1];
+            var longitude = lon_lat_match[2];
+
+			if (longitude && latitude) {
+				const marker = L.marker([latitude, longitude], {
+					icon: mapIcon
+				})
+
+				const content = `<div class="d-flex align-items-center mb-2">
+					<img src="`+ data.tpr_image +`" width="56px" height="56px" class="fit-cover rounded mr-2" onerror="this.onerror=null;this.src='/images/default-image-square.png';">
+						<div class="">
+							<a href="/`+ data.tpr_custom_link +`" class="font-weight-semibold font-size-sm text-dark truncate-3">`+ data.tpr_name +`</a>
+						</div>
+					</div>
+					
+				<div class="flex-fill alert alert-light mb-3 p-2" role="alert">
+					<div class="font-size-sm text-left">
+						<p class="my-1">Harga</p>
+						<span class="d-block font-weight-semibold" style="color: #fe7400">Rp `+ formatNumber(data.data.product_price) + `</span>
+					</div>
+				</div>
+				<div class="mb-3">
+					<p class="font-size-sm text-default m-0">`+ data.data.product_address +`, `+ data.data.product_district +`, `+ data.data.product_city +`, `+ data.data.product_province +`</p>
+				</div>
+
+				<a href="`+ data.data.product_google_maps_url +`" target="_blank" class="font-size-normal font-weight-semibold text-primary d-inline-flex align-items-center">Buka Maps <span class="icon icon-sm"><i class="material-icons">near_me</i></span></a>`
+
+				marker.bindPopup(content, {
+					maxWidth : 195
+				}).addTo(map);
+			}
+		}
+
+		map.on('popupopen', function(centerMarker) {
+			const cM = map.project(centerMarker.popup._latlng),
+			zoom = map.getZoom() + 2
+
+			cM.y -= centerMarker.popup._container.clientHeight / 8
+			map.setView(map.unproject(cM), zoom, {
+				animate: true
+			});
+		});
+	}
+</script>
+<script src="https://zakatin.com/v2/vendors/select2/js/select2.full.min.js"></script>
+
+<script src="https://zakatin.com/v2/js/helpers/campaign.js"></script>
+<script src="https://zakatin.com/v2/js/pages/home.js"></script>
+<script>
+	$(window).on('load', function () {
+		initCarousel()
+	})
+
+	$(function () {
+		let map
+		$('#modalMap').on('shown.bs.modal', function () {
+			if (!map) {
+				map = getMapData()
+			}
+		})
+
+		loadCampaign()
+		initSelect2()
+	})
+</script>
+	</div>
+</body>
+</html>

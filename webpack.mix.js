@@ -18,4 +18,10 @@ mix.js("resources/js/app.js", "public/js")
         require("autoprefixer"),
     ])
     .js("resources/js/admin.js", "public/js")
-    .version();
+    .version()
+    .copy('node_modules/owl.carousel/dist/assets/owl.carousel.css', 'public/css/owl.carousel.css')
+    .copy('node_modules/owl.carousel/dist/assets/owl.theme.default.css', 'public/css/owl.theme.default.css')
+    .copy('node_modules/owl.carousel/dist/owl.carousel.min.js', 'public/js/owl.carousel.min.js')
+    .autoload({
+        jquery: ['$', 'window.jQuery', 'jQuery'],
+    });
