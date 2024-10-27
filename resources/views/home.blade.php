@@ -213,31 +213,31 @@
             <div class="container p-0">
                 <ul class="navbar-nav nav-flex-icons">
                     <li class="nav-item flex-fill">
-                        <a class="nav-link p-0 active" href="https://zakatin.com">
+                        <a class="nav-link p-0 active" href="/">
                             <span class="icon"><i class="material-icons">home</i></span>
                             <span class="nav-title">Home</span>
                         </a>
                     </li>
                     <li class="nav-item flex-fill">
-                        <a class="nav-link p-0" href="https://zakatin.com/channels">
+                        <a class="nav-link p-0" href="#">
                             <span class="icon"><i class="material-icons">article</i></span>
                             <span class="nav-title">Kanal</span>
                         </a>
                     </li>
                     <li class="nav-item flex-fill">
-                        <a class="nav-link p-0" href="https://zakatin.com/user-campaigns">
+                        <a class="nav-link p-0" href="#">
                             <span class="icon"><i class="material-icons">campaign</i></span>
                             <span class="nav-title">Galang Dana</span>
                         </a>
                     </li>
                     <li class="nav-item flex-fill">
-                        <a class="nav-link p-0" href="https://zakatin.com/transactions">
+                        <a class="nav-link p-0" href="#">
                             <span class="icon"><i class="material-icons">list_alt</i></span>
                             <span class="nav-title">Transaksi</span>
                         </a>
                     </li>
                     <li class="nav-item flex-fill">
-                        <a class="nav-link p-0" href="https://zakatin.com/profile">
+                        <a class="nav-link p-0" href="#">
                             <span class="icon"><i class="material-icons">account_circle</i></span>
                             <span class="nav-title">Profil</span>
                         </a>
