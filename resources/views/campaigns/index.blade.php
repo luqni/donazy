@@ -53,7 +53,7 @@
                                         </div>
                                         <div class="font-size-sm text-right">
                                             <span class="d-block text-default">Sisa</span>
-                                            <span class="text-black">781 hari</span>
+                                            <span class="text-black">{{ $campaign->time_left }} hari</span>
                                         </div>
                                     </div>
                                 </div>
