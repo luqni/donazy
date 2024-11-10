@@ -72,7 +72,7 @@
                     <div>Data masih kosong</div>
                 </div>
             @endif
-    </main>
+        </main>
 
         <x-bottom-bar />
     </div>
