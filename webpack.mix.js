@@ -17,7 +17,7 @@ mix.js("resources/js/app.js", "public/js")
         require("tailwindcss"),
         require("autoprefixer"),
     ])
-    .js("resources/js/admin.js", "public/js")
+    .js("resources/js/admin.js",'resources/js/home.js', "public/js")
     .version()
     .copy('node_modules/owl.carousel/dist/assets/owl.carousel.css', 'public/css/owl.carousel.css')
     .copy('node_modules/owl.carousel/dist/assets/owl.theme.default.css', 'public/css/owl.theme.default.css')

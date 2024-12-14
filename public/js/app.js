@@ -3822,6 +3822,8 @@ __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
 __webpack_require__(/*! ./sw-registrar */ "./resources/js/sw-registrar.js");
 
+__webpack_require__(/*! ./home */ "./resources/js/home.js");
+
 
 window.$ = (jquery__WEBPACK_IMPORTED_MODULE_0___default());
 __webpack_provided_window_dot_jQuery = (jquery__WEBPACK_IMPORTED_MODULE_0___default());
@@ -3856,6 +3858,118 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/home.js":
+/*!******************************!*\
+  !*** ./resources/js/home.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+/* provided dependency */ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+function initCarousel() {
+  $('#slideFeatured').owlCarousel({
+    center: true,
+    items: 2,
+    loop: true,
+    margin: 12,
+    autoWidth: true,
+    dots: false,
+    responsive: {
+      320: {
+        items: 2
+      }
+    }
+  });
+  $('#slideCampaign').owlCarousel({
+    items: 2,
+    loop: true,
+    margin: 12,
+    dots: false,
+    responsive: {
+      320: {
+        items: 2
+      }
+    }
+  });
+  $('#slidePartner').owlCarousel({
+    items: 1,
+    margin: 20,
+    autoWidth: true,
+    dots: true,
+    loop: true,
+    nav: false,
+    responsive: {
+      320: {
+        items: 1
+      }
+    }
+  });
+  $('#slidePartner .owl-next').on('click', function () {
+    $(this).hide();
+  });
+}
+
+function loadCampaign() {
+  var start = $('#campaignList .card-campaign').length;
+  var length = 12;
+  $("#load_more").prop("disabled", true);
+  $.ajax({
+    method: 'GET',
+    url: '/api/v2/home-campaigns?start=' + start + '&length=' + length
+  }).done(function (res) {
+    renderCampaign(start, length, res);
+    initCarousel();
+    $("#load_more").prop("disabled", false);
+  });
+}
+
+function getMapData() {
+  var query = '';
+  var provinceId = $('#mapSearch').val();
+
+  if (provinceId) {
+    query = '&province_id=' + provinceId;
+  }
+
+  $.ajax({
+    method: 'GET',
+    url: '/api/v2/campaigns?start=0' + query
+  }).done(function (res) {
+    initMap(res.result.data);
+  });
+}
+
+function initSelect2() {
+  $('#mapSearch').select2({
+    placeholder: 'Cari provinsi',
+    ajax: {
+      url: '/api/v2/provinces?start=0',
+      dataType: 'json',
+      type: 'GET',
+      data: function data(params) {
+        var query = {
+          keyword: params.term
+        };
+        return query;
+      },
+      processResults: function processResults(data) {
+        var res = data.result.data;
+        return {
+          results: $.map(res, function (res) {
+            return {
+              text: res.province_name,
+              id: res.province_id
+            };
+          })
+        };
+      }
+    }
+  }).on('select2:select', function () {
+    getMapData();
+  });
+}
 
 /***/ }),
 
