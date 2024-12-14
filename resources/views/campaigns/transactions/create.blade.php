@@ -177,7 +177,7 @@
                             setTimeout(() => this.showCopiedFeedback = false, 1000);
                         },
                         handleSubmit(event) {
-                            this.meta = document.querySelector('meta[name="subscription"]').getAttribute('content');
+                            // this.meta = document.querySelector('meta[name="subscription"]').getAttribute('content');
 
                             setTimeout(() => event.target.submit(), 350);
                         }

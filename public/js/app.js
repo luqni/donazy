@@ -3881,17 +3881,20 @@ function initCarousel() {
         items: 2
       }
     }
-  });
-  $('#slideCampaign').owlCarousel({
-    items: 2,
-    loop: true,
-    margin: 12,
-    dots: false,
-    responsive: {
-      320: {
-        items: 2
+  }); // Loop melalui semua elemen dengan ID yang dimulai dengan 'slideCampaign_'
+
+  document.querySelectorAll('[id^="slideCampaign_"]').forEach(function (element) {
+    $('#' + element.id).owlCarousel({
+      items: 2,
+      loop: true,
+      margin: 12,
+      dots: false,
+      responsive: {
+        320: {
+          items: 2
+        }
       }
-    }
+    });
   });
   $('#slidePartner').owlCarousel({
     items: 1,

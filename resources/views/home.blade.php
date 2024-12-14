@@ -150,7 +150,7 @@
 
 		<script src="https://zakatin.com/v2/js/helpers/campaign.js"></script>
 		<!-- <script src="https://zakatin.com/v2/js/pages/home.js"></script> -->
-		<script src="{{ mix('resources/js/home.js') }}" defer></script>
+		<script src="{{ mix('js/home.js') }}" defer></script>
 		<script>
 			$(window).on('load', function () {
 				initCarousel()
