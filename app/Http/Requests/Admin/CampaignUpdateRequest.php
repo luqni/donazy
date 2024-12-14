@@ -49,6 +49,10 @@ class CampaignUpdateRequest extends FormRequest
                 'numeric',
                 'max:999',
             ],
+            'location_name' => [
+                'nullable',
+                'string',
+            ],
         ];
     }
 

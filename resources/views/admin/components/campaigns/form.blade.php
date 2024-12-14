@@ -52,6 +52,11 @@
         <x-admin::rich-editor id="description" name="description" placeholder="Deskripsi" :value="old('description', $campaign->description)" />
     </label>
     <label class="block text-sm mb-4">
+        <x-admin::label value="Lokasi Program" />
+        <x-admin::input type="text" name="location_name" placeholder="Lokasi Program" :error="$errors->has('location_name')" :value="old('location_name', $campaign->location_name)" />
+        <x-admin::input-helper value="Biarkan kosong jika lokasi tidak ingin dicantumkan" />
+    </label>
+    <label class="block text-sm mb-4">
         <x-admin::label value="Kebutuhan Dana" />
         <x-admin::input type="number" name="funds" :value="old('funds', $campaign->funds)" />
         <x-admin::input-helper value="Biarkan kosong untuk tidak ada batasan" />
