@@ -11,8 +11,10 @@ class CampaignController extends Controller
 {
     public function index(): View
     {
-        $query = Campaign::query()->published();
-
+        $query = Campaign::query()
+        ->published()
+        ->leftjoin('partnerships', 'campaigns.owner_id', '=', 'partnerships.user_id')
+        ->select('campaigns.*', 'partnerships.nama_lembaga as partnership_name');
         $campaigns = PaginationService::make($query)
             ->setSearchables([
                 'name',
