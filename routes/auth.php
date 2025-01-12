@@ -21,6 +21,9 @@ Route::get('/register/organization', [RegisteredUserController::class, 'createUs
 Route::post('/register', [RegisteredUserController::class, 'store'])
                 ->middleware('guest');
 
+ Route::post('/register/organization', [RegisteredUserController::class, 'storeOrganization'])
+                ->middleware('guest')->name('register.organization');
+
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')
                 ->name('login');

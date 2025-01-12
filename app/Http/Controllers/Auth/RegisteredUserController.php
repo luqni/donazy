@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\MOdels\Partnership;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -71,4 +72,81 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    /**
+     * Handle an incoming registration request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function storeOrganization(Request $request)
+    {
+        $data = $request->validate([
+            'name_organization' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'category_organization' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                'unique:users',
+            ],
+            'phone' => [
+                'required',
+                'string',
+                'unique:users',
+            ],
+            'password' => [
+                'required',
+                'regex:/\S*/i',
+                'confirmed',
+            ],
+            'partner' => [
+                'required'
+            ],
+        ]);
+
+        // dd($data);
+
+        // Buat user terlebih dahulu
+        $user = User::create([
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'phone'     => $data['phone'],
+            'partner'   => $data['partner'],
+            'password'  => bcrypt($data['password']), // Enkripsi password
+        ]);
+
+        // Simpan data partnership terkait
+        $partnership = Partnership::create([
+            'user_id'                   => $user->id, // Hubungkan ke user
+            'nama_lembaga'              => $data['name_organization'],
+            'jenis_lembaga'             => $data['category_organization'],
+            'nama_penanggung_jawab'     => $data['name'],
+            'email'                     => $data['email'],
+            'phone'                     => $data['phone'],
+        ]);
+
+        // Trigger event dan login user
+        event(new Registered($user));
+        Auth::login($user);
+
+        return redirect(RouteServiceProvider::HOME);
+    }
+
 }

@@ -20,19 +20,19 @@
 
             <!-- <p  align="justify">Silahkan masukkan alamat email dan password Anda.</p> -->
 
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register.organization') }}">
                 @csrf
 
                 <!-- Name -->
                 <div class="card-body">
                     <x-label for="name" value="Nama Lembaga" />
-                    <input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                    <input id="name" class="block mt-1 w-full" type="text" name="name_organization" :value="old('name')" required autofocus />
                 </div>
 
                 <!-- Name -->
                 <div class="card-body">
                     <x-label for="name" value="Jenis Lembaga" />
-                    <input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                    <input id="name" class="block mt-1 w-full" type="text" name="category_organization" :value="old('name')" required autofocus />
                 </div>
 
                 <!-- Name -->
@@ -68,6 +68,8 @@
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">Sudah terdaftar?</a>
                     <x-button type="submit" class="ml-4">Daftar</x-button>
                 </div>
+
+                <input type="hidden" name="partner" value="1">
             </form>
         </main>
         <x-bottom-bar />
