@@ -135,7 +135,7 @@ use Illuminate\Support\Str;
                                 <h6 class="section-title font-weight-semibold mb-3">Penggalang Dana</h6>
                                 <a href="#" class="d-flex align-items-center font-weight-base text-left m-0">
                                     <img src=" https://zk-media-storage-uat.oss-ap-southeast-5.aliyuncs.com/images/users/20200415/450_2020_04_15_14_22_44_000000.png " height="32px" width="32px" class="fit-cover mr-2">
-                                    <div class="flex-fill ml-2"> NH Zakat Kita </div>
+                                    <div class="flex-fill ml-2">{{ $campaign->partnership_name ? $campaign->partnership_name : 'Turuntangan Pinara' }}</div>
                                     <span class="icon"><i class="material-icons">navigate_next</i></span>
                                 </a>
                                 <hr>

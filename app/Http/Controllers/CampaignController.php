@@ -30,6 +30,8 @@ class CampaignController extends Controller
     {
         /** @var Campaign $campaign */
         $campaign = Campaign::query()
+            ->leftjoin('partnerships', 'campaigns.owner_id', '=', 'partnerships.user_id')
+            ->select('campaigns.*', 'partnerships.nama_lembaga as partnership_name')
             ->where('slug', $slug)
             ->published()
             ->firstOrFail();

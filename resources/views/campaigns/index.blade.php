@@ -33,7 +33,7 @@
                             <div class="d-flex mb-3">
                                 <img src="{{ $campaign->thumbnail_cover_url }}" loading="lazy" width="40px" height="40px" class="rounded-circle fit-cover mr-2">
                                 <div class="flex-fill">
-                                    <span class="font-weight-semibold d-block mb-1">{{ $campaign->partnership_name ? $campaign->partnership_name : 'Saling Bantu' }}</span>
+                                    <span class="font-weight-semibold d-block mb-1">{{ $campaign->partnership_name ? $campaign->partnership_name : 'Turuntangan Pinara' }}</span>
                                     <span class="text-default font-size-sm text-capitalize">2 hari yang lalu</span>
                                 </div>
                             </div>
