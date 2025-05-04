@@ -2,9 +2,14 @@ FROM php:8.2-fpm
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-    git unzip curl libzip-dev zip \
-    && docker-php-ext-install zip pdo pdo_mysql
-
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libwebp-dev \
+    libgmp-dev \
+    && docker-php-ext-install \
+    gd exif gmp
+    
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
