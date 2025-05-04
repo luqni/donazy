@@ -2,16 +2,15 @@ FROM php:8.2-fpm
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libpng-dev \
-    libwebp-dev \
-    libgmp-dev \
-    && docker-php-ext-install \
-    gd exif gmp \
     libzip-dev \
+    libpng-dev \
     libjpeg-dev \
-    zip unzip
+    libwebp-dev \
+    libfreetype6-dev \
+    libgmp-dev \
+    zip unzip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+    && docker-php-ext-install gd exif gmp zip pdo_mysql
     
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php && \
