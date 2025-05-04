@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     libwebp-dev \
     libgmp-dev \
     && docker-php-ext-install \
-    gd exif gmp
+    gd exif gmp \
     libzip-dev \
     libjpeg-dev \
     zip unzip
