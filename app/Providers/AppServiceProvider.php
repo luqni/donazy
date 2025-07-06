@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -38,5 +39,9 @@ class AppServiceProvider extends ServiceProvider
         $this->loadViewsFrom(resource_path('views/partner'), 'partner');
 
         Blade::directive('idr', fn ($expression) => "Rp <?php echo number_format({$expression}, 0, ',', '.'); ?>");
+
+        if (env('APP_ENV') === 'production' || request()->header('X-Forwarded-Proto') === 'https') {
+            URL::forceScheme('https');
+        }
     }
 }
