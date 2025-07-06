@@ -1,6 +1,6 @@
 FROM php:8.2-fpm
 
-# Install dependencies
+# Install dependencies (tambahkan libpng dan gd)
 RUN apt-get update && apt-get install -y \
     git unzip curl libzip-dev zip libpng-dev libjpeg-dev libfreetype6-dev \
     libpq-dev \
@@ -16,6 +16,9 @@ WORKDIR /var/www
 
 # Copy project files
 COPY . .
+
+# Pastikan folder penting ada
+RUN mkdir -p storage bootstrap/cache
 
 # Install PHP dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
