@@ -17,9 +17,6 @@ WORKDIR /var/www
 # Copy project files
 COPY . .
 
-# Pastikan folder penting ada
-RUN mkdir -p storage bootstrap/cache
-
 # Install PHP dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
